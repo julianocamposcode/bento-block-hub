@@ -138,7 +138,7 @@ function ProfilePage() {
       .insert({
         profile_id: profile.id,
         type,
-        content,
+        content: content as never,
         size,
         position_index: position,
       })
@@ -162,7 +162,7 @@ function ProfilePage() {
     if (!draft.id) return;
     const { error } = await supabase
       .from("widgets")
-      .update({ content: draft.content, size: draft.size })
+      .update({ content: draft.content as never, size: draft.size })
       .eq("id", draft.id);
     if (error) {
       toast.error(error.message);
